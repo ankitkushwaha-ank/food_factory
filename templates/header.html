@@ -1,0 +1,14 @@
+
+<header class="wrapper light">
+	<a href="/"><img class="logo" src="/static/img/logo.png" alt="Restaurant Logo"/></a>
+	<nav>
+		<ul>
+			<li class="{% if request.path == '/' %} active {% endif %}"  style="{% if request.path == '/' %} background-color: #FFD700 ; border-radius: 4px; padding: 5px 10px; {% endif %}"><a href="/">Home</a></li>
+			<li class="{% if request.path == '/menu/' %}active{% endif %}" style="{% if request.path == '/menu/' %} background-color: #FFD700; border-radius: 4px; padding: 5px 10px; {% endif %}"><a href="/menu">Menu</a></li>
+			<li class="{% if request.path == '/karaoke/' %} active {% endif %}" style="{% if request.path == '/karaoke/' %} background-color: #FFD700; border-radius: 4px; padding: 5px 10px; {% endif %}"><a href="/karaoke">Karaoke/Party</a></li>
+			<li class="{% if request.path == '/promotions/' %} active {% endif %}" style="{% if request.path == '/promotions/' %} background-color: #FFD700;border-radius: 4px; padding: 5px 10px; {% endif %}"><a href="/promotions">Promotions/Events</a></li>
+			<li class="{% if request.path == '/contact/' %} active {% endif %}" style="{% if request.path == '/contact/' %} background-color: #FFD700; border-radius: 4px; padding: 5px 10px; {% endif %}"><a href="/contact">Contact Us</a></li>
+			<li> </li>
+		</ul>
+	</nav>
+</header>

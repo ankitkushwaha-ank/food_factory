@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slide-in Cart</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ff6f61;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-icon.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cart {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 20%;
+      height: 100vh;
+      background-color: white;
+      border-left: 2px solid #eee;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+      transition: right 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .cart.open {
+      right: 0;
+    }
+
+    .cart h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .cart-count {
+      background-color: #ff6f61;
+      color: white;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .item-info span {
+      font-weight: bold;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cart Icon -->
+  <div class="cart-icon" id="cart-icon" onclick="toggleCart()">🛒</div>
+
+  <!-- Slide-in Cart -->
+  <div class="cart" id="cart">
+    <span class="close-btn" onclick="toggleCart()">✖</span>
+    <h2>Your Cart <span class="cart-count" id="item-count">2</span></h2>
+    <div class="cart-items">
+      <div class="cart-item">
+        <img src="https://via.placeholder.com/50?text=Pizza" alt="Pizza">
+        <div class="item-info">
+          <span>Pizza</span><br>
+          Quantity: 1
+        </div>
+      </div>
+      <div class="cart-item">
+        <img src="https://via.placeholder.com/50?text=Coke" alt="Coke">
+        <div class="item-info">
+          <span>Coke</span><br>
+          Quantity: 1
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function toggleCart() {
+      const cart = document.getElementById('cart');
+      const cartIcon = document.getElementById('cart-icon');
+      cart.classList.toggle('open');
+      cartIcon.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>

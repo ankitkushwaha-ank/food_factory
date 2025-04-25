@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <meta name="author" content="pixelhint.com">
+    <meta name="description" content="Sublime Stunning free HTML5/CSS3 website template"/>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/fancybox.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+
+    <link rel="icon" type="image/png" href="/static/img/favicon.png">
+</head>
+<body>
+
+    <!-- Billboard Section -->
+    <section class="billboard light">
+        {% include "header.html" %}
+
+        <div class="caption light animated wow fadeInDown clearfix">
+            <h1>We love wonderful tastes and food.</h1>
+            <p>Check out our selection of wonderful Indian cuisine</p>
+        </div>
+
+        <div class="shadow"></div>
+    </section>
+
+    <!-- Services / Menu Section -->
+    <section class="services wrapper">
+
+        <!-- Search Bar -->
+        <form id="search-form" method="get" action="">
+            <input type="text" name="servicename" placeholder="Search..." value="{{ request.GET.servicename }}"/>
+            <button type="submit">Search</button>
+        </form>
+
+
+
+        <!-- Menu Items -->
+        <ul class="clearfix">
+
+            {% if service_data %}
+                {% for n in service_data %}
+                <li class="animated wow fadeInDown">
+                    <img class="icon" src="/media/{{n.service_image}}" alt="Service Image"/>
+
+                    <br><br>
+
+                    <h2>{{n.service_title}}</h2>
+                    <br>
+                    <h4>{{n.service_price}}</h4>
+                    <br>
+
+                    <div class="order">
+                        <button
+                            type="button"
+                            onclick="window.location.href='/menu_detail/{{n.menu_slug}}'"
+                            style="cursor:pointer; border: 1px solid #ccc; padding: 8px 26px; font-size: 20px;"
+                        >
+                            Order
+                        </button >
+                            <button
+                                onclick="window.location.href='/cart/{{n.id}}'"
+                                style="cursor:pointer; border: 1px solid #ccc; padding: 8px 16px; font-size: 20px; margin-left:16px; background-color: #FFDF00;"
+                            >
+                                <img src="\static\img\dish.png" alt="cart image" height="16px">
+                            </button>
+                    </div>
+
+                    <br><br>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>No results found for "{{ request.GET.servicename }}"</p>
+            {% endif %}
+        </ul>
+    </section>
+
+<!--    #cart option-->
+     <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+        }
+
+        .cart-icon {
+          position: fixed;
+          top: 50px;
+          right: 50px;
+          background-color: #ff6f61;
+          color: white;
+          padding: 0px 4px;
+          border-radius: 15%;
+          font-size: 10px;
+          cursor: pointer;
+          z-index: 1000;
+          transition: opacity 0.3s ease;
+        }
+
+        .cart-icon.hidden {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .cart {
+          position: fixed;
+          top: 0;
+          right: -90%;
+          width: 22%;
+          height: 90vh;
+          background-color: white;
+          border-left: 2px solid #eee;
+          box-shadow: -4px 0 5px rgba(0,0,0,0.1);
+          padding: 20px;
+          box-sizing: border-box;
+          transition: right 0.3s ease;
+          z-index: 999;
+          overflow-y: auto;
+        }
+
+        .cart.open {
+          right: 0;
+        }
+
+        .cart h2 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .cart-count {
+          background-color: #00BFFF;
+          color: white;
+          font-size: 17px;
+          padding: 4px 8px;
+          border-radius: 12px;
+          display: inline-block;
+        }
+
+        .cart-item {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin: 20px 0;
+          border-bottom: 1px solid #eee;
+          padding-bottom: 10px;
+        }
+
+        .cart-item img {
+          width: 60px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 6px;
+        }
+
+        .item-info span {
+          font-weight: bold;
+        }
+
+        .close-btn {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          font-size: 18px;
+          cursor: pointer;
+        }
+
+        .content {
+          padding: 30px;
+        }
+ </style>
+
+  <!-- Cart Icon -->
+  <div class="cart-icon" id="cart-icon" onclick="toggleCart()">
+            <img src="\static\img\cart_img.png" alt="Pizza" height="50px" >
+  </div>
+
+  <!-- Slide-in Cart -->
+  <div class="cart" id="cart">
+            <span class="close-btn" onclick="toggleCart()">✖</span>
+            <h2>Your Cart <span class="cart-count" id="item-count">{{ service_data|length }} items</span></h2>
+        {% for n in service_data %}
+            <div class="cart-items">
+                  <div class="cart-item">
+                    <img src="/media/{{n.service_image}}" alt="Pizza">
+                    <div class="item-info">
+                      <span>{{n.service_title}}</span><br>
+                      Price: {{n.service_price}}
+                    </div>
+                  </div>
+            </div>
+        {% endfor %}
+  </div>
+
+
+  <script>
+    function toggleCart() {
+      const cart = document.getElementById('cart');
+      const cartIcon = document.getElementById('cart-icon');
+      cart.classList.toggle('open');
+      cartIcon.classList.toggle('hidden');
+    }
+  </script>
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+</body>
+</html>
