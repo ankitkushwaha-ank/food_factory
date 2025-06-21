@@ -7,3 +7,4 @@ sqlparse
 asgiref
 openai~=1.68.2
 google-generativeai~=0.5.2  # or latest stable
+whitenoise
