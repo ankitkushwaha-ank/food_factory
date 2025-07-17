@@ -50,6 +50,8 @@
 ![Cart](screenshots/cart.png)
 ![Admin Dashboard](screenshots/admin-dashboard.png)
 
+---
+
 ## ⚙️ Installation & Setup
 # Clone the repository
 git clone https://github.com/your-username/food-factory.git
@@ -72,6 +74,7 @@ python manage.py createsuperuser
 # Run the development server
 python manage.py runserver
 
+---
 
 ## 📂 Folder Structure
 
