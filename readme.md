@@ -50,39 +50,24 @@
 ![Cart](screenshots/cart.png)
 ![Admin Dashboard](screenshots/admin-dashboard.png)
 
-# Clone the repository
-git clone https://github.com/your-username/food-factory.git
-cd food-factory
+---
 
-# Create a virtual environment
-python -m venv env
-source env/bin/activate  # On Windows: env\Scripts\activate
+## 🧑‍💻 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/ankitkushwaha-ank/food_factory.git
+cd food_factory
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Apply database migrations
-python manage.py makemigrations
+# Run migrations
 python manage.py migrate
-
-# Create a superuser for admin access
-python manage.py createsuperuser
 
 # Start the development server
 python manage.py runserver
-
-
-food_factory/
-├── restaurant/             # Core Django app
-│   ├── models.py           # Models for menu, orders, reservations
-│   ├── views.py            # Views for all endpoints
-│   ├── forms.py            # Django forms for item and reservation inputs
-│   ├── urls.py             # App-level URL routing
-├── templates/              # HTML templates
-│   ├── customer/           # Customer-facing views
-│   └── admin/              # Admin dashboard views
-├── static/                 # CSS, JS, and image files
-├── media/                  # Uploaded images (e.g. menu photos)
-├── manage.py
-├── requirements.txt
-└── README.md
